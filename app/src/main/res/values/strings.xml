@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PwHash</string>
+    <string name="label_tag">Tag</string>
+    <string name="label_password">Password</string>
+    <string name="label_length">Length</string>
+    <string name="btn_copy_hash">Copy hash</string>
+    <string name="btn_clear_clipboard">Clear clipboard</string>
+
+    <string name="alert_key_is_zero">The password can\'t be empty</string>
+    <string name="alert_hash_copied">The Password has been copied to clipboard</string>
+</resources>
