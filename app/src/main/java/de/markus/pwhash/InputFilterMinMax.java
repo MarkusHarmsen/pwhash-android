@@ -3,11 +3,11 @@ package de.markus.pwhash;
 import android.text.InputFilter;
 import android.text.Spanned;
 
-public class InputFilterMinMax implements InputFilter {
+class InputFilterMinMax implements InputFilter {
     private final int min;
     private final int max;
 
-    public InputFilterMinMax(int min, int max) {
+    InputFilterMinMax(int min, int max) {
         this.min = min;
         this.max = max;
     }

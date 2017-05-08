@@ -46,11 +46,8 @@ public class MainActivity extends Activity {
 
         @Override
         public void onClick(View view) {
-            @SuppressWarnings("ConstantConditions")
             String data = mEditTag.getText().toString();
-            @SuppressWarnings("ConstantConditions")
             String key  = mEditPassword.getText().toString();
-            @SuppressWarnings("ConstantConditions")
             int length  = Integer.valueOf(mEditLength.getText().toString());
 
             if(key.length() == 0) {
