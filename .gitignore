@@ -63,6 +63,8 @@ obj/
 
 # User-specific configurations
 .idea/libraries/
+.idea/caches/
+.idea/codeStyles/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/.name

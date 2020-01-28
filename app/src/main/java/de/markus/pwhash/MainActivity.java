@@ -3,20 +3,22 @@ package de.markus.pwhash;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.app.Activity;
 import android.text.InputFilter;
 import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-public class MainActivity extends Activity {
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+public class MainActivity extends AppCompatActivity {
     private final int HASH_MAX_RESULT_LENGTH        = 26;
     @SuppressWarnings("FieldCanBeLocal")
     private final int HASH_DEFAULT_RESULT_LENGTH    = 16;
@@ -30,9 +32,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEditTag        = (EditText) findViewById(R.id.edit_tag);
-        mEditPassword   = (EditText) findViewById(R.id.edit_password);
-        mEditLength     = (EditText) findViewById(R.id.edit_length);
+        mEditTag        = findViewById(R.id.edit_tag);
+        mEditPassword   = findViewById(R.id.edit_password);
+        mEditLength     = findViewById(R.id.edit_length);
 
         // Set max and min length
         mEditLength.setFilters(new InputFilter[]{new InputFilterMinMax(1, HASH_MAX_RESULT_LENGTH)});
@@ -78,6 +80,10 @@ public class MainActivity extends Activity {
     // Copy to clipboard
     private void setClipboard(String value) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        if (clipboard == null) {
+            return;
+        }
+
         ClipData clip = ClipData.newPlainText(MainActivity.this.getResources().getString(R.string.app_name), value);
         clipboard.setPrimaryClip(clip);
     }
@@ -101,11 +107,7 @@ public class MainActivity extends Activity {
         }
 
         SecretKeySpec secret;
-        try {
-            secret = new SecretKeySpec(key.getBytes("UTF-8"), mac.getAlgorithm());
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        secret = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), mac.getAlgorithm());
 
         try {
             mac.init(secret);
