@@ -69,13 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private final View.OnClickListener onClearClipboardClickListener = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View view) {
-            setClipboard("");
-        }
-    };
+    private final View.OnClickListener onClearClipboardClickListener = view -> setClipboard("");
 
     // Copy to clipboard
     private void setClipboard(String value) {

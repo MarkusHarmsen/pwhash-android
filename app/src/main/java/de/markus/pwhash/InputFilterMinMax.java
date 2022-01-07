@@ -7,6 +7,7 @@ class InputFilterMinMax implements InputFilter {
     private final int min;
     private final int max;
 
+    @SuppressWarnings("SameParameterValue")
     InputFilterMinMax(int min, int max) {
         this.min = min;
         this.max = max;
