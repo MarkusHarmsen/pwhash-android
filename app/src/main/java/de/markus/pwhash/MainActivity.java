@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             String data = mEditTag.getText().toString();
             String key  = mEditPassword.getText().toString();
-            int length  = Integer.valueOf(mEditLength.getText().toString());
+            int length  = Integer.parseInt(mEditLength.getText().toString());
 
             if(key.length() == 0) {
                 Toast.makeText(MainActivity.this, MainActivity.this.getResources().getString(R.string.alert_key_is_zero), Toast.LENGTH_SHORT).show();
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         String code = Base64.encodeToString(digest, Base64.DEFAULT);
 
         // Limit length (0 < length <= 26)
-        length = length < 1           ? 1 : length;
-        length = length > HASH_MAX_RESULT_LENGTH ? HASH_MAX_RESULT_LENGTH : length;
+        length = Math.max(length, 1);
+        length = Math.min(length, HASH_MAX_RESULT_LENGTH);
 
         // Set length
         code = code.substring(0, length);
